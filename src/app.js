@@ -15,6 +15,7 @@ import {
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './reducers';
+import { Header } from './components/common';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -27,7 +28,8 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Provider store={createStore}>
+      <Provider store={createStore(reducers)}>
+        <Header headerText="Tech Stack" />
         <View style={styles.container}>
           <Text style={styles.welcome}>
             Welcome to React Native!
