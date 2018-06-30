@@ -14,7 +14,7 @@ import {
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-
+import reducers from './reducers';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
