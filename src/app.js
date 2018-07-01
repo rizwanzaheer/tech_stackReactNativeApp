@@ -29,8 +29,9 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Provider store={createStore(reducers)}>
+      <View >
         <Header headerText="Tech Stack" />
-        <View style={styles.container}>
+        {/* <View style={styles.container}>
           <Text style={styles.welcome}>
             Welcome to React Native!
           </Text>
@@ -40,7 +41,8 @@ export default class App extends Component<Props> {
           <Text style={styles.instructions}>
             {instructions}
           </Text>
-        </View>
+        </View> */}
+      </View>
       </Provider>
     );
   }
