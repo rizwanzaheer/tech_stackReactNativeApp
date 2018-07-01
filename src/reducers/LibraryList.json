@@ -44,4 +44,9 @@
     "title": "Nextjs",
     "description": "Nextjs is moduler bundler"
   },
+  {
+    "id": 9,
+    "title": "Nuxtjs",
+    "description": "Nuxtjs is moduler bundler"
+  }
 ]

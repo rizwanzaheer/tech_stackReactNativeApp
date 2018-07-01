@@ -28,9 +28,10 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    const { container } = styles;
     return (
       <Provider store={createStore(reducers)}>
-      <View >
+      <View style={container}>
         <Header headerText="Tech Stack" />
         <LibraryList />
         {/* <View style={styles.container}>
@@ -54,8 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // alignItems: 'center',
+    // backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
