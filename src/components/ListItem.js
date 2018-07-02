@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { connect } from 'react-redux';
 import { CardSection } from './common';
+import * as actions from '../actions';
 
-export default class ListItem extends Component {
+class ListItem extends Component {
+  renderDescription() {
+    console.log('working');
+    const { library, description, selectedLibraryId} =  this.props;
+    if (library.id === selectedLibraryId) {
+      return (
+        <Text> {library.description}</Text>
+      );
+    }
+  }
   render() {
-    const { title, description } = this.props.library;
+    const { id, title, description } = this.props.library;
     console.log("this.props is: ", this.props);
-    const {titleStyle } = styles;
+    const { titleStyle } = styles;
 
-    
     return (
-      <CardSection>
-        <Text style={titleStyle}>
-          {title}
-        </Text>
-      </CardSection>
+      <TouchableWithoutFeedback
+        onPress={() => this.props.selectLibrary(id)}
+      >
+        <View>
+          <CardSection>
+            <Text style={titleStyle}>
+              {title}
+            </Text>
+          </CardSection>
+          {this.renderDescription()}
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }
@@ -25,3 +42,9 @@ const styles = {
     paddingLeft: 15,
   }
 }
+
+const mapstateToProps = state => {
+  return {selectedLibraryId: state.selectedLibraryId};
+}
+
+export default connect(mapstateToProps, actions)(ListItem);
