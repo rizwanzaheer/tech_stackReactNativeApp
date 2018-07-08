@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  LayoutAnimation,
+  UIManager,
+  Platform
+} from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
+  constructor() {
+    super();
+
+    if (Platform.OS === 'android') {
+      UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    LayoutAnimation.spring();
+  }
+
   renderDescription() {
     console.log('working');
     const { library, expanded } = this.props;
     if (expanded) {
       return (
-        <Text> {library.description}</Text>
+        <CardSection>
+          <Text style={{ flex: 1 }}>
+            {library.description}
+          </Text>
+        </CardSection>
       );
     }
   }
   render() {
     const { id, title } = this.props.library;
-    console.log("this.props is: ", this.props);
     const { titleStyle } = styles;
 
     return (
@@ -43,10 +64,9 @@ const styles = {
   }
 }
 
-
 // ownProps = this.props in component level 
 const mapstateToProps = (state, ownProps) => {
-  const expanded = state.selectedLibraryId = ownProps.library.id;
+  const expanded = state.selectedLibraryId === ownProps.library.id;
   return { expanded };
 }
 
