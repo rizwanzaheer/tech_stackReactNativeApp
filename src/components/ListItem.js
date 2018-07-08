@@ -29,7 +29,7 @@ class ListItem extends Component {
     if (expanded) {
       return (
         <CardSection>
-          <Text style={{ flex: 1 }}>
+          <Text style={styles.descriptionStyle}>
             {library.description}
           </Text>
         </CardSection>
@@ -61,6 +61,10 @@ const styles = {
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15,
+  },
+  descriptionStyle: {
+    paddingLeft: 20,
+    paddingRight: 10,
   }
 }
 
